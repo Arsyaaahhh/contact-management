@@ -1,4 +1,31 @@
 #Program manajemen kontak
+def lihat_kontak():
+        if len(kontak)>0: # Mengecek apakah list kontak tidak kosong
+            for num, item in enumerate(kontak, start=1): #fungsi enumerate untuk menampilkan index dan item
+                print(f'{num}. {item["nama"]} ({item["nomor_hp"]}, {item["email"]})') #menampilkan kontak
+        else:
+            print("Kosong")
+            return 1 #mengembalikan ke pilihan 1 jika list kosong
+
+def input_kontak():
+    nama = input("Masukkan nama: ")
+    nomor_hp = input("Masukkan nomor: ")
+    email = input("Masukkan email: ")
+    kontak_baru = {"nama": nama, "nomor_hp":nomor_hp, "email":email}
+    kontak.append(kontak_baru) #fungsi append untuk menamnah
+    print("Berhasil menambahkan kontak!")
+
+
+def hapus_kontak():
+    if lihat_kontak() == 1: # Mengecek apakah list kontak kosong, kalau kosong 
+        return #kembali ke menu utama(1) jika list kosong
+
+    else:
+        index_hapus = int(input("Pilih kontak yang mau dihapus: ")) #meminta input index kontak yang mau dihapus
+        del kontak[index_hapus - 1] #menghapus kontak berdasarkan index yang diinput user, -1 karena index list mulai dari 0
+        print("Kontak berhasil dihapus!")
+
+
 kontak1 = {"nama":"hang", "nomor_hp": "081234567", "email":"hang@mail.com"}
 kontak2 = {"nama":"ryan", "nomor_hp": "088234567", "email":"ryn@mail.com"}
 kontak3 = {"nama":"anandu", "nomor_hp": "085234567", "email":"nndu@mail.com"}
@@ -14,33 +41,17 @@ while True:
     pilihan = input("Masukkan pilihan (1,2,3,4): ")
 
     if pilihan == "1":
-        if len(kontak)>0: #bisa pakai len
-            for num, item in enumerate(kontak, start=1):
-                print(f'{num}. {item["nama"]} ({item["nomor_hp"]}, {item["email"]})')
-        else:
-            print("Kosong")
+        lihat_kontak()
+
 
     elif pilihan == "2":
-        nama = input("Masukkan nama: ")
-        nomor_hp = input("Masukkan nomor: ")
-        email = input("Masukkan email: ")
-        kontak_baru = {"nama": nama, "nomor_hp":nomor_hp, "email":email}
-        kontak.append(kontak_baru) #fungsi append untuk menamnah
-        print("Berhasil menambahkan kontak!")
+        input_kontak()
 
     elif pilihan == "3":
-        if len(kontak)>0: #bisa pakai len
-            for num, item in enumerate(kontak, start=1):
-                print(f'{num}. {item["nama"]} ({item["nomor_hp"]}, {item["email"]})')
-        else:
-            print("Kosong")
-            continue
+        hapus_kontak() 
 
-        index_hapus = int(input("Pilih kontak yang mau dihapus: "))
-        del kontak[index_hapus - 1]
-        print("Kontak berhasil dihapus!")
     elif pilihan == "4":
         print("Thank you :)")
         break
     else :
-        print("Masukan pilihan yang benar")
+        print("Masukan pilihan yang benar") 
